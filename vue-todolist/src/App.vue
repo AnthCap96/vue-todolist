@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       todos: [],
+      newTodo: ""
     };
   },
   //Methods option:
@@ -35,9 +36,15 @@ export default {
     <ul class="mt-8">
       <li class="mt-4 flex items-center rounded bg-slate-200 p-4" v-for="(todo, index) in todos" :key="index">
         <input class="rounded border-0 " type="checkbox" v-model="todo.done"/>
-        <div class="ml-3 mr-8">{{ todo.text }}</div>
-        <button class="ml-auto text-red-400 line-through decoration-1 line-through-2" @click="todos.splice(index, 1)">Cancel</button>
+        <div class="ml-3 mr-8" :class="todo.done?'fatto':''">{{ todo.text }}</div>
+        <button class="ml-auto text-red-400" @click="todos.splice(index, 1)">Cancel</button>
       </li>
     </ul>
   </div>
 </template>
+
+<style>
+.fatto {
+  text-decoration: line-through;
+}
+</style>
